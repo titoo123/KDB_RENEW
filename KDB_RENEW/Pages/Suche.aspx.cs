@@ -22,7 +22,7 @@ namespace KDB_RENEW.Pages
                 Session["IDKran"] = GridView_Suche.GetItemIDByGridView(0).X;
 
                 if (SiteMaster.use != null && SiteMaster.use.Rechte == "Admin" || SiteMaster.use.Rechte == "Schreiben")
-                {
+                {//
                     int t;
                     if (int.TryParse(Session["IDKran"].ToString(),out t))
                     {
