@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Kran" Class="DatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=HES-EDV-10;Initial Catalog=Kran;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="KranConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Bereich" Member="Bereich">
+    <Type Name="Bereich">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Kran" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Bereich_Teil" Member="Teil" ThisKey="Id" OtherKey="Id_Bereich" Type="Teil" />
+      <Association Name="Kran_Bereich" Member="Kran" ThisKey="Id_Kran" OtherKey="Id" Type="Kran" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Kran" Member="Kran">
+    <Type Name="Kran">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Kran_Bereich" Member="Bereich" ThisKey="Id" OtherKey="Id_Kran" Type="Bereich" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Teil" Member="Teil">
+    <Type Name="Teil">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Zeichnungsnummer" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Artikelnummer" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Bermerkungen" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Id_Bereich" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Teil" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Bereich_Teil" Member="Bereich" ThisKey="Id_Bereich" OtherKey="Id" Type="Bereich" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="User">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Rechte" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
